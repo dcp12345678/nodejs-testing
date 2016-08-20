@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+  $(function() {
+    $('#btnSave').click(function() {
+      $.ajax({
+        url: '/savePerson',
+        type: 'POST',
+        data: {
+          firstName: $('#txtFirstName').val(),
+          lastName: $('#txtLastName').val(),
+          address: $('#txtAddress').val(),
+          age: $('#txtAge').val()
+        },
+        cache: false,
+        error: function(jqXHR, textStatus, errorThrown) {
+          alert('Error saving person ' + jqXHR.responseText);
+        },
+        success: function() {
+          window.location.href = '/';
+        }
+      });
+    });
+  });
+  </script>
+</head>
+
+<body>
+  <table id='tblAddPerson'>
+    <tr>
+      <td>First Name</td>
+      <td>
+        <input id='txtFirstName' type='text' />
+      </td>
+    </tr>
+    <tr>
+      <td>Last Name</td>
+      <td>
+        <input id='txtLastName' type='text' />
+      </td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>
+        <input id='txtAddress' type='text' />
+      </td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td>
+        <input id='txtAge' type='number' />
+      </td>
+    </tr>
+  </table>
+  <button id='btnSave'>Save</button>
+</body>
+
+</html>

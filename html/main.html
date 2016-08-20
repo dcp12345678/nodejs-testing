@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+  $(function() {
+    $('#btnAddPerson').click(function() {
+      window.location.href = '/addPerson';
+    });
+
+    $.ajax({
+      url: '/getAllPeople',
+      type: 'GET',
+      cache: false,
+      error: function(jqXHR, textStatus, errorThrown) {
+        alert('error getting all people: ' + jqXHR.responseText);
+      },
+      success: function(people) {
+        for(var i = 0; i < people.length; ++i) {
+          //alert('person ' + i + ' is ' + JSON.stringify(people[i]));
+          var row = $('<tr></tr>');
+          row.append('<td>' + people[i].firstName + '</td>');
+          row.append('<td>' + people[i].lastName + '</td>');
+          row.append('<td>' + people[i].address + '</td>');
+          row.append('<td>' + people[i].age + '</td>');
+          $('#tblPerson').append(row);  
+        }
+      }
+    });
+
+  });
+  </script>
+</head>
+
+<body>
+  <table style="font-size: 14px;" border='1' id='tblPerson'>
+    <tr style='background-color:cyan;'>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Address</td>
+      <td>Age</td>
+    </tr>
+  </table>
+  <button style="margin-top: 8px;" id="btnAddPerson">Add</button>
+</body>
+
+</html>
