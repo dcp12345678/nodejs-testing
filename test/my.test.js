@@ -13,6 +13,7 @@ const cheerio = require('cheerio');
 const Promise = require('bluebird');
 const co = require('co');
 const DA = require('deasync');
+const logger = require('../helpers/logger');
 /* eslint-enable no-unused-vars */
 
 const IMAGE_CDN_ROOT = 'http://hgtvhome.sndimg.com';
@@ -73,8 +74,8 @@ describe('my-tests', () => {
       this.timeout(4000);
       request.get('http://www.google.com', (error, response, body) => {
         if (!error && response.statusCode === 200) {
-          console.log(body); // Show the HTML for the Google homepage.
-          console.log('google request completed successfully');
+          logger.debug(body); // Show the HTML for the Google homepage.
+          logger.debug('google request completed successfully');
         } else {
           throw new Error('failed, error = ' + error + ' statusCode = ' + response.statusCode);
         }
@@ -168,7 +169,7 @@ describe('my-tests', () => {
 
       const f = _.flatten(users);
       for (let i = 0; i < f.length; ++i) {
-        console.log(f[i] + ' ');
+        logger.debug(f[i] + ' ');
       }
       assert.deepEqual(f, [10, 20, 30, 40, 50, 60, 70, 80, 90]);
     });
@@ -267,10 +268,10 @@ describe('my-tests', () => {
       stub.yields(null, { statusCode: 200 }, dummyHtml);
       request.get(dummyHtml, (err, resp, body) => {
         if (!err && resp.statusCode === 200) {
-          console.log('success');
-          console.log('body=' + body);
+          logger.debug('success');
+          logger.debug('body=' + body);
         } else {
-          console.log('failure');
+          logger.debug('failure');
         }
       });
     }));
@@ -281,7 +282,7 @@ describe('my-tests', () => {
       const mock = this.mock(request);
       mock.expects('get').withArgs(dummyAddress).yields(null, { statusCode: 200 }, dummyHtml);
       request.get(dummyAddress, (err, resp, body) => {
-        console.log('body=' + body);
+        logger.debug('body=' + body);
       });
     }));
   });
@@ -322,7 +323,7 @@ describe('my-tests', () => {
 
       p('abc').then((data) => {
         assert.equal(data, 'it worked! arg1 = abc');
-        console.log('data = ' + data);
+        logger.debug('data = ' + data);
         done();
       });
     });
@@ -330,7 +331,7 @@ describe('my-tests', () => {
     it('should get correct promise results if promise fails', (done) => {
       const p = (arg1) => {
         const promise = new Promise((resolve, reject) => {
-          console.log(`arg1 is ${arg1}`);
+          logger.debug(`arg1 is ${arg1}`);
           setTimeout(() => {
             reject('it failed!');
           }, 200);
@@ -341,7 +342,7 @@ describe('my-tests', () => {
       p('abc').then((data) => {
         throw new Error('should not have gotten here, data = ' + JSON.stringify(data));
       }).catch((e) => {
-        console.log('error is ' + e);
+        logger.debug('error is ' + e);
         done();
       });
     });
@@ -355,7 +356,7 @@ describe('my-tests', () => {
         });
         return promise;
       }).then((results) => {
-        console.log('results = ' + results);
+        logger.debug('results = ' + results);
         assert.equal(results, 'one_mapped,two_mapped,three_mapped');
         done();
       });
@@ -365,14 +366,14 @@ describe('my-tests', () => {
       const obj = {};
       obj.func1 = (callback) => {
         setTimeout(() => {
-          console.log('completed setTimeout call');
+          logger.debug('completed setTimeout call');
           callback(null); // pass err as first argument, wich is null in this case
         }, 20);
       };
 
       Promise.promisifyAll(obj);
       obj.func1Async().then(() => {
-        console.log('completed thenable part of func1Async call');
+        logger.debug('completed thenable part of func1Async call');
         done();
       }).catch((err) => {
         throw new Error('should not have gotten here, err = ' + JSON.stringify(err));
@@ -383,7 +384,7 @@ describe('my-tests', () => {
       const obj = {};
       obj.func1 = (callback) => {
         setTimeout(() => {
-          console.log('completed setTimeout call');
+          logger.debug('completed setTimeout call');
           callback('this is an error');
         }, 20);
       };
@@ -392,8 +393,8 @@ describe('my-tests', () => {
       obj.func1Async().then(() => {
         throw new Error('should not have gotten here');
       }).catch((err) => {
-        console.log('got an error in funcAsync, which is the expected behavior');
-        console.log('err.message = ' + err.message);
+        logger.debug('got an error in funcAsync, which is the expected behavior');
+        logger.debug('err.message = ' + err.message);
         done();
       });
     });
@@ -404,14 +405,14 @@ describe('my-tests', () => {
       const name = 'John Doe';
       const p = new Promise((resolve) => {
         setTimeout(() => {
-          console.log('hello there ' + name);
+          logger.debug('hello there ' + name);
           resolve('promise complete');
         }, 345);
       });
 
       co(function* () {
         const res = yield p;
-        console.log('res = ' + res);
+        logger.debug('res = ' + res);
         done();
       });
     });
@@ -420,7 +421,7 @@ describe('my-tests', () => {
       const obj = {};
       obj.getSquareOfNum = (num, callback) => {
         setTimeout(() => {
-          console.log('completed setTimeout call');
+          logger.debug('completed setTimeout call');
           callback(null, num * num); // pass err as first argument, wich is null in this case
         }, 203);
       };
@@ -476,14 +477,14 @@ describe('my-tests', () => {
       Promise.promisifyAll(obj);
 
       co(function* () {
-        console.log('getting sum');
+        logger.debug('getting sum');
         const sm = yield obj.getSumAsync(23, 45);
-        console.log('back from getting sum, the sum = ' + sm);
+        logger.debug('back from getting sum, the sum = ' + sm);
         assert.equal(sm, 23 + 45, 'wrong sum');
 
-        console.log('getting product');
+        logger.debug('getting product');
         const prod = yield obj.getProductAsync(9, 7);
-        console.log('back from getting product, the product = ' + prod);
+        logger.debug('back from getting product, the product = ' + prod);
         assert.equal(prod, 9 * 7, 'wrong product');
 
         done();
@@ -503,10 +504,10 @@ describe('my-tests', () => {
         obj.second = x * 2;
         return obj;
       }).reduce((sm, x) => {
-        console.log('inside reduce, x.first = ' + x.first + ' x.second = ' + x.second);
+        logger.debug('inside reduce, x.first = ' + x.first + ' x.second = ' + x.second);
         return sm + (x.first * x.second);
       }, 0);
-      console.log('result for map/reduce is ' + res);
+      logger.debug('result for map/reduce is ' + res);
       assert.equal(res, 110);
     });
 
@@ -528,7 +529,7 @@ describe('my-tests', () => {
       let ret;
       const func1 = () => {
         setTimeout(() => {
-          console.log('completed setTimeout call');
+          logger.debug('completed setTimeout call');
           ret = 'done';
         }, 203);
       };
@@ -537,7 +538,7 @@ describe('my-tests', () => {
       while (ret === undefined) {
         DA.sleep(100);
       }
-      console.log('completed deasync test');
+      logger.debug('completed deasync test');
       done();
     });
   });
@@ -556,8 +557,8 @@ describe('my-tests', () => {
       assert.equal($('#fruits').find('.pear').text(), 'Pear');
 
       const res = $('li').map((i, elem) => {
-        console.log('elem = ' + $(elem).text());
-        console.log('elem.data-attr = ' + $(elem).attr('data-attr1'));
+        logger.debug('elem = ' + $(elem).text());
+        logger.debug('elem.data-attr = ' + $(elem).attr('data-attr1'));
         const obj = {};
         obj.fruitName = $(elem).text();
         obj.dataAttr = $(elem).attr('data-attr1');
@@ -585,7 +586,7 @@ describe('my-tests', () => {
       // The parentheses around the ([^]) are used to create a capture group. This capture group isolates the pub date into
       // its own string, and that's why we use [1] below to get the date.
       const origPubDate = new Date(/origPubDate\s=\s'([^']+)'/.exec(txt)[1]); // find pubdate
-      console.log('origPubDate = ' + origPubDate);
+      logger.debug('origPubDate = ' + origPubDate);
       const html = `
           <html>
                 <script type="text/x-config">
@@ -661,7 +662,7 @@ describe('my-tests', () => {
       $('script[type="text/x-config"]').each(function(i, elem) { //eslint-disable-line
         // find prerendered script with video infos
         const scriptRendered = $(elem).text();
-        // console.log('scriptRendered = ' + scriptRendered);
+        // logger.debug('scriptRendered = ' + scriptRendered);
         const script = JSON.parse(scriptRendered);
         const channels = _.get(script, 'channels');
         if (channels) {
