@@ -373,3 +373,44 @@
 {"level":"debug","message":"Preparing to save model...","timestamp":"2016-08-20T22:47:53.126Z"}
 {"level":"info","message":"New Model of type : Person created with id : \"57b8de19df832b16050d94d7\"","timestamp":"2016-08-20T22:47:53.129Z"}
 {"level":"debug","message":"all people retrieved successfully","timestamp":"2016-08-20T22:47:53.249Z"}
+{"level":"info","message":"express server started on port : 3000","timestamp":"2016-08-24T19:07:28.950Z"}
+{"level":"debug","message":"calling serviceHelper.deleteAllPeople","timestamp":"2016-08-24T19:07:28.956Z"}
+{"level":"debug","message":"deleting all people","timestamp":"2016-08-24T19:07:28.958Z"}
+{"date":"Wed Aug 24 2016 15:07:28 GMT-0400 (EDT)","process":{"pid":882,"uid":501,"gid":20,"cwd":"/Users/TechReviews/Desktop/dev/TopCoder/proj/nodejs-testing","execPath":"/Users/TechReviews/.nvm/versions/node/v6.3.0/bin/node","version":"v6.3.0","argv":["/Users/TechReviews/.nvm/versions/node/v6.3.0/bin/node","/Users/TechReviews/Desktop/dev/TopCoder/proj/nodejs-testing/app"],"memoryUsage":{"rss":50118656,"heapTotal":34598912,"heapUsed":22491752}},"os":{"loadavg":[1.4951171875,1.38232421875,1.3154296875],"uptime":22487},"trace":[{"column":11,"file":"util.js","function":"Object.exports._errnoException","line":1008,"method":"exports._errnoException","native":false},{"column":20,"file":"util.js","function":"exports._exceptionWithHostPort","line":1031,"method":"_exceptionWithHostPort","native":false},{"column":14,"file":"net.js","function":"TCPConnectWrap.afterConnect [as oncomplete]","line":1080,"method":"afterConnect [as oncomplete]","native":false}],"stack":["Error: connect ECONNREFUSED 127.0.0.1:27017","    at Object.exports._errnoException (util.js:1008:11)","    at exports._exceptionWithHostPort (util.js:1031:20)","    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1080:14)"],"level":"error","message":"uncaughtException: connect ECONNREFUSED 127.0.0.1:27017","timestamp":"2016-08-24T19:07:28.979Z"}
+{"level":"info","message":"express server started on port : 3000","timestamp":"2016-08-24T19:07:49.346Z"}
+{"level":"debug","message":"calling serviceHelper.deleteAllPeople","timestamp":"2016-08-24T19:07:49.352Z"}
+{"level":"debug","message":"deleting all people","timestamp":"2016-08-24T19:07:49.353Z"}
+{"level":"debug","message":"all people deleted!","timestamp":"2016-08-24T19:07:49.391Z"}
+{"level":"debug","message":"calling requestify.post","timestamp":"2016-08-24T19:07:49.392Z"}
+{"level":"debug","message":"Creating new Model : Person","timestamp":"2016-08-24T19:07:49.458Z"}
+{"level":"debug","message":"Done creating new Model","timestamp":"2016-08-24T19:07:49.465Z"}
+{"level":"debug","message":"Preparing to save model...","timestamp":"2016-08-24T19:07:49.466Z"}
+{"level":"info","message":"New Model of type : Person created with id : \"57bdf0850392f2db03562bb9\"","timestamp":"2016-08-24T19:07:49.483Z"}
+{"level":"debug","message":"all people retrieved successfully","timestamp":"2016-08-24T19:08:04.459Z"}
+{"level":"info","message":"express server started on port : 3000","timestamp":"2016-09-08T21:01:04.167Z"}
+{"level":"debug","message":"calling serviceHelper.deleteAllPeople","timestamp":"2016-09-08T21:01:04.173Z"}
+{"level":"debug","message":"deleting all people","timestamp":"2016-09-08T21:01:04.174Z"}
+{"level":"debug","message":"all people deleted!","timestamp":"2016-09-08T21:01:04.222Z"}
+{"level":"debug","message":"calling requestify.post","timestamp":"2016-09-08T21:01:04.223Z"}
+{"level":"debug","message":"Creating new Model : Person","timestamp":"2016-09-08T21:01:04.286Z"}
+{"level":"debug","message":"Done creating new Model","timestamp":"2016-09-08T21:01:04.298Z"}
+{"level":"debug","message":"Preparing to save model...","timestamp":"2016-09-08T21:01:04.298Z"}
+{"level":"info","message":"New Model of type : Person created with id : \"57d1d190cd06470723cb1af2\"","timestamp":"2016-09-08T21:01:04.331Z"}
+{"level":"info","message":"express server started on port : 3000","timestamp":"2016-09-08T21:13:38.630Z"}
+{"level":"debug","message":"calling serviceHelper.deleteAllPeople","timestamp":"2016-09-08T21:13:38.635Z"}
+{"level":"debug","message":"deleting all people","timestamp":"2016-09-08T21:13:38.636Z"}
+{"level":"debug","message":"all people deleted!","timestamp":"2016-09-08T21:13:38.667Z"}
+{"level":"debug","message":"calling requestify.post","timestamp":"2016-09-08T21:13:38.668Z"}
+{"level":"debug","message":"Creating new Model : Person","timestamp":"2016-09-08T21:13:38.727Z"}
+{"level":"debug","message":"Done creating new Model","timestamp":"2016-09-08T21:13:38.738Z"}
+{"level":"debug","message":"Preparing to save model...","timestamp":"2016-09-08T21:13:38.738Z"}
+{"level":"info","message":"New Model of type : Person created with id : \"57d1d482f0e0dd078b466e12\"","timestamp":"2016-09-08T21:13:38.757Z"}
+{"level":"info","message":"express server started on port : 3000","timestamp":"2016-09-08T21:14:06.842Z"}
+{"level":"debug","message":"calling serviceHelper.deleteAllPeople","timestamp":"2016-09-08T21:14:06.846Z"}
+{"level":"debug","message":"deleting all people","timestamp":"2016-09-08T21:14:06.848Z"}
+{"level":"debug","message":"all people deleted!","timestamp":"2016-09-08T21:14:06.890Z"}
+{"level":"debug","message":"calling requestify.post","timestamp":"2016-09-08T21:14:06.891Z"}
+{"level":"debug","message":"Creating new Model : Person","timestamp":"2016-09-08T21:14:06.971Z"}
+{"level":"debug","message":"Done creating new Model","timestamp":"2016-09-08T21:14:06.987Z"}
+{"level":"debug","message":"Preparing to save model...","timestamp":"2016-09-08T21:14:06.987Z"}
+{"level":"info","message":"New Model of type : Person created with id : \"57d1d49e4278c00792ab3ff9\"","timestamp":"2016-09-08T21:14:07.024Z"}

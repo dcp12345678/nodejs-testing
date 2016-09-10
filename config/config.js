@@ -24,5 +24,5 @@ module.exports = {
 
   DATABASE_CONN_DETAILS: process.env.MONGO_URI,
 
-  SOME_OTHER_PARM: 'unmatchedAppsEmailTemplate.ejs'
+  SOME_OTHER_PARM: 'unmatchedAppsEmailTemplate.ejs',
 };

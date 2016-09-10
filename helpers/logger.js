@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const winston = require('winston');
 const loggingLevel = require('../config/config').LOGGING_LEVEL;
@@ -18,15 +18,15 @@ const logger = new (winston.Logger)({
       json: true,
       maxsize: 5242880, // 5MB
       maxFiles: 5,
-      colorize: false
+      colorize: false,
     }),
     new winston.transports.Console({
       level: loggingLevel,
       handleExceptions: true,
       json: false,
-      colorize: true
+      colorize: true,
     })],
-  exitOnError: false
+  exitOnError: false,
 });
 
 module.exports = logger;

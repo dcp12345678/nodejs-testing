@@ -17,7 +17,7 @@ function processResponse(err, result, response) {
   } else {
     const statusCode = err && err.statusCode ? err.statusCode : 500;
     const message = err && err.message ? err.message : 'Internal error processing the request';
-    response.status(statusCode).json({ code: statusCode, message: message }).end();
+    response.status(statusCode).json({ code: statusCode, message }).end();
   }
 }
 
@@ -52,6 +52,6 @@ function handleMongodbError(err) {
 }
 
 module.exports = {
-  handleMongodbError: handleMongodbError,
-  processResponse: processResponse
+  handleMongodbError,
+  processResponse,
 };

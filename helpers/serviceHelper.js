@@ -2,9 +2,9 @@
 
 const logger = require('./logger');
 const Person = require('../models/person').Person;
+const utils = require('./utils');
 
 function createModel(model, modelName, modelData, callback) {
-  debugger;
   logger.debug('Creating new Model : %s', modelName);
   const modelObj = model(modelData);
   logger.debug('Done creating new Model');
@@ -17,7 +17,7 @@ function createModel(model, modelName, modelData, callback) {
       logger.info('New Model of type : %s created with id : %s', modelName, JSON.stringify(newModelObj._id));
       callback(null, {
         _id: newModelObj._id,
-        message: `New ${modelName} created! with _id : ${newModelObj._id}`
+        message: `New ${modelName} created! with _id : ${newModelObj._id}`,
       });
     }
   });
@@ -32,7 +32,7 @@ function deleteAllPeople(callback) {
     } else {
       logger.debug('err deleting people ' + JSON.stringify(err));
     }
-  })
+  });
 }
 
 function getAllPeople(callback) {
@@ -47,8 +47,8 @@ function getAllPeople(callback) {
 }
 
 module.exports = {
-  createModel: createModel,
-  deleteAllPeople: deleteAllPeople,
-  getAllPeople: getAllPeople
+  createModel,
+  deleteAllPeople,
+  getAllPeople,
 };
 

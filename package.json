@@ -6,12 +6,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "lint": "eslint -c .eslintrc.json --ignore-path .eslintignore config helpers test app.js --fix || true"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.0.1",
+    "bluebird": "^3.4.6",
     "body-parser": "^1.15.1",
+    "co": "^4.6.0",
     "common-errors": "^0.5.7",
     "cors": "^2.7.1",
     "dotenv": "^2.0.0",
@@ -30,6 +34,12 @@
     "chai": "^3.5.0",
     "cheerio": "^0.20.0",
     "co-mocha": "^1.1.2",
+    "deasync": "^0.1.7",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb": "11.0.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.1",
+    "eslint-plugin-react": "^6.2.0",
     "mocha": "^2.5.3",
     "should": "^9.0.2",
     "sinon": "^1.17.5"
