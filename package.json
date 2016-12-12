@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha --reporter spec",
+    "test-debug": "mocha --debug-brk",
     "lint": "eslint -c .eslintrc.json --ignore-path .eslintignore config helpers test app.js --fix || true"
   },
   "author": "",
