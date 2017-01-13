@@ -264,7 +264,7 @@ describe('my-tests', () => {
       const vals = [
         { a: 'a0', b: 'b0', dt: "2016-11-05T04:00:00.000Z" },
         { a: 'a1', b: 'b1', dt: "2016-08-04T04:00:00.000Z" },
-        { foobar: 'foo', dt: "2017-01-13T15:03:01.647Z" }
+        { dt: "2017-01-13T15:03:01.647Z", foobar: 'foo' }
       ];
 
       const res = _.orderBy(vals, ['dt'], ['desc']);
