@@ -114,7 +114,7 @@ describe('my-tests', () => {
       done();
     });
 
-    it('should test startsWith and get correct result', () => {
+    it('should test _.startsWith and get correct result', () => {
       const x = 'ice cream';
       assert.equal(_.startsWith(x, 'ice '), true);
     });
@@ -126,7 +126,7 @@ describe('my-tests', () => {
       assert.equal(_.isFunction(x), true);
     });
 
-    it('should get correct value from chain', () => {
+    it('should get correct value from _.chain', () => {
       const users = [
         { user: 'barney', age: 36 },
         { user: 'fred', age: 40 },
@@ -143,7 +143,7 @@ describe('my-tests', () => {
       assert.equal(youngest, 'pebbles is 1');
     });
 
-    it('should get correct value from chain', () => {
+    it('should get correct value from _.chain', () => {
       const users = [
         { user: 'barney', age: 36 },
         { user: 'fred', age: 40 },
@@ -160,7 +160,7 @@ describe('my-tests', () => {
       assert.equal(oldest, 'fred is 40');
     });
 
-    it('should get correct value from flatten', () => {
+    it('should get correct value from _.flatten', () => {
       const users = [
         [10, 20, 30],
         [40, 50, 60],
@@ -174,7 +174,7 @@ describe('my-tests', () => {
       assert.deepEqual(f, [10, 20, 30, 40, 50, 60, 70, 80, 90]);
     });
 
-    it('should get correct value from each', () => {
+    it('should get correct value from _.each', () => {
       const users = [
         { user: 'barney', age: 36 },
         { user: 'fred', age: 40 },
@@ -189,7 +189,7 @@ describe('my-tests', () => {
       assert.equal(res, 'barney-fred-pebbles-');
     });
 
-    it('should get correct value from filter', () => {
+    it('should get correct value from _.filter', () => {
       const users = [
         { user: 'barney', age: 36 },
         { user: 'fred', age: 40 },
@@ -208,7 +208,7 @@ describe('my-tests', () => {
       assert.equal(res[0].user, 'fred');
     });
 
-    it('should get correct value from map', () => {
+    it('should get correct value from _.map', () => {
       const users = [
         { user: 'barney', age: 36 },
         { user: 'fred', age: 40 },
@@ -231,7 +231,7 @@ describe('my-tests', () => {
       assert(_.filter(res, (u) => u.type === 'young').length === 2, 'wrong count');
     });
 
-    it('should get correct value when using _filter and _every', () => {
+    it('should get correct value when using _.filter and _.every', () => {
       const neededAttrs = ['a', 'b', 'd'];
       const v = [
         { a: 'a', b: 'b', c: 'c', d: 'd' },
@@ -243,13 +243,13 @@ describe('my-tests', () => {
       assert.deepEqual(res[1], { a: 'a', b: 'b', d: 'd' });
     });
 
-    it('should get correct value when using _uniq', () => {
+    it('should get correct value when using _.uniq', () => {
       const vals = ['a', 'b', 'c', 'd', 'd', 'e', 'f', 'e', 'g', 'g', 'c'];
       const res = _.uniq(vals);
       assert.equal(res.length, 7, 'wrong number of elements');
     });
 
-    it('should get correct value when using _uniqBy', () => {
+    it('should get correct value when using _.uniqBy', () => {
       const vals = [
         { name: 'Joey', age: 42 },
         { name: 'Joey', age: 19 },
@@ -258,6 +258,20 @@ describe('my-tests', () => {
 
       const res = _.uniqBy(vals, 'name');
       assert.equal(2, res.length);
+    });
+
+    it('should get correct from when using _.orderBy', () => {
+      const vals = [
+        { a: 'a0', b: 'b0', dt: "2016-11-05T04:00:00.000Z" },
+        { a: 'a1', b: 'b1', dt: "2016-08-04T04:00:00.000Z" },
+        { foobar: 'foo', dt: "2017-01-13T15:03:01.647Z" }
+      ];
+
+      const res = _.orderBy(vals, ['dt'], ['desc']);
+      console.log(`res = ${JSON.stringify(res, null, 2)}`);
+      assert.equal(res[0], vals[2], 'wrong order');
+      assert.equal(res[1], vals[0], 'wrong order');
+      assert.equal(res[2], vals[1], 'wrong order');
     });
   });
 
@@ -659,7 +673,7 @@ describe('my-tests', () => {
 
       const $ = cheerio.load(html);
       let videos;
-      $('script[type="text/x-config"]').each(function(i, elem) { //eslint-disable-line
+      $('script[type="text/x-config"]').each(function (i, elem) { //eslint-disable-line
         // find prerendered script with video infos
         const scriptRendered = $(elem).text();
         // logger.debug('scriptRendered = ' + scriptRendered);
