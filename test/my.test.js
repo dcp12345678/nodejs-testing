@@ -14,6 +14,8 @@ const Promise = require('bluebird');
 const co = require('co');
 const DA = require('deasync');
 const logger = require('../helpers/logger');
+const streamify = require('stream-array');
+const os = require('os');
 /* eslint-enable no-unused-vars */
 
 const IMAGE_CDN_ROOT = 'http://hgtvhome.sndimg.com';
@@ -617,14 +619,14 @@ describe('my-tests', () => {
                   "channels": [{
                       "id": "393939393",
                       "start": 0,
-              
-                  
+
+
                     "end": 12,
                     "total": 13,
                     "title": "",
                     "description": "",
                     "videos": [
-                    
+
                       {
                       "id" : "http://data.media.theplatform.com/media/data/Media/465068099969",
                       "title" : "Expectant Couple Seeks Nest",
@@ -638,8 +640,8 @@ describe('my-tests', () => {
                       "scrid" : "2429119",
                       "cmsid" : "60a1adbdbf0f6715a6c1451f0837bda3",
                       "sniGUID": "bc0eb5fb-047e-4586-93b2-ae04a93cb581",
-                      "sponsor" : ""                      
-                      },                                        
+                      "sponsor" : ""
+                      },
                       {
                       "id" : "http://data.media.theplatform.com/media/data/Media/465046595666",
                       "title" : "Extra Space for Blended Family",
@@ -654,9 +656,9 @@ describe('my-tests', () => {
                       "cmsid" : "e23cafc5f733d53409f3ecd7908d5ad7",
                       "sniGUID": "eec16182-4fc4-445c-aea6-54be2eb1f645",
                       "sponsor" : ""
-                      
-                      }                    
-                    ]                                    
+
+                      }
+                    ]
               }]
             }
             </script>
@@ -703,4 +705,13 @@ describe('my-tests', () => {
       assert.ok(videos !== undefined, 'videos should not be undefined');
     });
   });
+
+  describe('streamify tests', () => {
+    it('should call streamify and stream result to stdout', (done) => {
+      let arr = ['1','2','3','4','5', os.EOL];
+      streamify(arr).pipe(process.stdout);
+      done();
+    });
+  });
+
 });
