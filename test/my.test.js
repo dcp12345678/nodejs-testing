@@ -281,7 +281,7 @@ describe('my-tests', () => {
     it('should test sinon.stub and get correct result', sinon.test(function () {
       const dummyHtml = '<html><p>dummy html</p></html>';
       const stub = this.stub(request, 'get');
-      stub.yields(null, { statusCode: 200 }, dummyHtml);
+      stub.yields(null, { statusCode: 200 }, dummyHtml); // the "null, { statusCode: 200 }, dummyHtml" correspond to (err, resp, body)
       request.get(dummyHtml, (err, resp, body) => {
         if (!err && resp.statusCode === 200) {
           logger.debug('success');
@@ -296,7 +296,7 @@ describe('my-tests', () => {
       const dummyHtml = '<html><p>dummy html</p></html>';
       const dummyAddress = 'http://mysite.com?parm1=42';
       const mock = this.mock(request);
-      mock.expects('get').withArgs(dummyAddress).yields(null, { statusCode: 200 }, dummyHtml);
+      mock.expects('get').withArgs(dummyAddress).yields(null, { statusCode: 200 }, dummyHtml); // the "null, { statusCode: 200 }, dummyHtml" correspond to (err, resp, body)
       request.get(dummyAddress, (err, resp, body) => {
         logger.debug('body=' + body);
       });
