@@ -378,12 +378,12 @@ describe('my-tests', () => {
       });
     });
 
-    it('should get correct result for PromisifyAll for sucessful call', (done) => {
+    it('should get correct result for PromisifyAll for successful call', (done) => {
       const obj = {};
       obj.func1 = (callback) => {
         setTimeout(() => {
           logger.debug('completed setTimeout call');
-          callback(null); // pass err as first argument, wich is null in this case
+          callback(null); // pass err as first argument, which is null in this case
         }, 20);
       };
 
